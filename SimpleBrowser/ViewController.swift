@@ -2,13 +2,13 @@
 //  ViewController.swift
 //  SimpleBrowser
 //
-//  Created by Hideaki Ishii on 2015/02/08.
-//  Copyright (c) 2015年 danimal141. All rights reserved.
+//  Created by Hideaki Ishii on 02/08/15.
+//  Copyright (c) 2015 danimal141. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController, UIWebViewDelegate {
+class ViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var webView: UIWebView!
@@ -20,19 +20,18 @@ class ViewController: UIViewController, UIWebViewDelegate {
         super.viewDidLoad()
         
         self.webView.delegate = self
+        self.textField.delegate = self
         
-        let startUrl = "http://www.yahoo.co.jp/"
-        if let url = NSURL(string: startUrl) {
-            let urlRequest = NSURLRequest(URL: url)
-            self.webView.loadRequest(urlRequest)
-        }
+        let startUrl = "http://www.yahoo.co.jp/" // Sample url
+        
+        self.accessUrl(startUrl)
         self.activityIndicatorView.hidesWhenStopped = true
         self.setupBtnsEnabled()
     }
     
-    func setupBtnsEnabled() {
-        self.backBtn.enabled = self.webView.canGoBack
-        self.forwardBtn.enabled = self.webView.canGoForward
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     func webViewDidStartLoad(webView: UIWebView) {
@@ -48,17 +47,48 @@ class ViewController: UIViewController, UIWebViewDelegate {
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        var urlString = self.textField.text
+        urlString = urlString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        if urlString == "" {
+            self.showAlert("Enter URL")
+        } else {
+            self.accessUrl(urlString)
+            self.setupBtnsEnabled()
+        }
+        self.textField.resignFirstResponder()
+        return true
+    }
+    
+    func accessUrl(urlString: String) {
+        if let url = NSURL(string: urlString) {
+            let urlRequest = NSURLRequest(URL: url)
+            self.webView.loadRequest(urlRequest)
+        } else {
+            self.showAlert("Invalid URL")
+        }
+    }
+    
+    func setupBtnsEnabled() {
+        self.backBtn.enabled = self.webView.canGoBack
+        self.forwardBtn.enabled = self.webView.canGoForward
+    }
+    
+    func showAlert(msg: String) {
+        let alertController = UIAlertController(title: "Error", message: msg, preferredStyle: .Alert)
+        let dafaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(dafaultAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     @IBAction func goBack(sender: AnyObject) {
         self.webView.goBack()
     }
+    
     @IBAction func goForward(sender: AnyObject) {
         self.webView.goForward()
     }
+    
     @IBAction func reload(sender: AnyObject) {
         self.webView.reload()
     }

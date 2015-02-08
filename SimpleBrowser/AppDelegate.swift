@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  SimpleBrowser
 //
-//  Created by Hideaki Ishii on 2015/02/08.
-//  Copyright (c) 2015年 danimal141. All rights reserved.
+//  Created by Hideaki Ishii on 02/08/15.
+//  Copyright (c) 2015 danimal141. All rights reserved.
 //
 
 import UIKit
