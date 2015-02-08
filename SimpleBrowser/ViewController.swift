@@ -41,10 +41,17 @@ class ViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
     func webViewDidFinishLoad(webView: UIWebView) {
         self.activityIndicatorView.stopAnimating()
         self.setupBtnsEnabled()
+        self.updateUrlLocation()
+    }
+    
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
+        self.webView.stopLoading()
+        self.activityIndicatorView.stopAnimating()
         
-        if let urlString = self.webView.request?.URL.absoluteString {
-            self.textField.text = urlString
+        if error.code != NSURLErrorCancelled {
+            self.showAlert("Network Error")
         }
+        self.updateUrlLocation()
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -66,6 +73,12 @@ class ViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
             self.webView.loadRequest(urlRequest)
         } else {
             self.showAlert("Invalid URL")
+        }
+    }
+    
+    func updateUrlLocation() {
+        if let urlString = self.webView.request?.URL.absoluteString {
+            self.textField.text = urlString
         }
     }
     
