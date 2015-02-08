@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Title-->
@@ -49,6 +50,9 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="5F3-C2-08p">
+                                <rect key="frame" x="559" y="35" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -58,6 +62,8 @@
                             <constraint firstAttribute="trailing" secondItem="Eeb-RF-cK4" secondAttribute="trailing" id="CWG-q5-pLb"/>
                             <constraint firstAttribute="trailing" secondItem="wcK-uQ-JD5" secondAttribute="trailing" constant="10" id="HJh-CK-mOz"/>
                             <constraint firstAttribute="trailing" secondItem="VKM-Ba-z31" secondAttribute="trailing" id="PnB-vs-ItN"/>
+                            <constraint firstItem="wcK-uQ-JD5" firstAttribute="centerY" secondItem="5F3-C2-08p" secondAttribute="centerY" id="c2v-ha-0gg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5F3-C2-08p" secondAttribute="trailing" constant="5" id="c9d-r2-hBi"/>
                             <constraint firstItem="Eeb-RF-cK4" firstAttribute="top" secondItem="VKM-Ba-z31" secondAttribute="bottom" id="fgS-Bf-wAu"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Eeb-RF-cK4" secondAttribute="bottom" id="kHW-kD-Hnb"/>
                             <constraint firstItem="Eeb-RF-cK4" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="oeT-C0-jQZ"/>
@@ -66,6 +72,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="X9E-lg-sib"/>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="5F3-C2-08p" id="bXV-2n-dgP"/>
                         <outlet property="backBtn" destination="Chd-Pl-L5f" id="0qH-MO-8Au"/>
                         <outlet property="forwardBtn" destination="qwc-iZ-r0u" id="SBq-FV-7Im"/>
                         <outlet property="textField" destination="wcK-uQ-JD5" id="tQr-ff-tox"/>

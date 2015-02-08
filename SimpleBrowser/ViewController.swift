@@ -14,6 +14,7 @@ class ViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var backBtn: UIBarButtonItem!
     @IBOutlet weak var forwardBtn: UIBarButtonItem!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,7 @@ class ViewController: UIViewController, UIWebViewDelegate {
             let urlRequest = NSURLRequest(URL: url)
             self.webView.loadRequest(urlRequest)
         }
-        
+        self.activityIndicatorView.hidesWhenStopped = true
         self.setupBtnsEnabled()
     }
     
@@ -33,8 +34,13 @@ class ViewController: UIViewController, UIWebViewDelegate {
         self.backBtn.enabled = self.webView.canGoBack
         self.forwardBtn.enabled = self.webView.canGoForward
     }
+    
+    func webViewDidStartLoad(webView: UIWebView) {
+        self.activityIndicatorView.startAnimating()
+    }
 
     func webViewDidFinishLoad(webView: UIWebView) {
+        self.activityIndicatorView.stopAnimating()
         self.setupBtnsEnabled()
     }
     
