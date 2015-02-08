@@ -42,6 +42,10 @@ class ViewController: UIViewController, UIWebViewDelegate {
     func webViewDidFinishLoad(webView: UIWebView) {
         self.activityIndicatorView.stopAnimating()
         self.setupBtnsEnabled()
+        
+        if let urlString = self.webView.request?.URL.absoluteString {
+            self.textField.text = urlString
+        }
     }
     
     override func didReceiveMemoryWarning() {
