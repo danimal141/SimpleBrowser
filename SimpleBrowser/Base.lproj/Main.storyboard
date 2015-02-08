@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Title-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="SimpleBrowser" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,8 +15,44 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="wcK-uQ-JD5">
+                                <rect key="frame" x="10" y="30" width="580" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="go"/>
+                            </textField>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VKM-Ba-z31">
+                                <rect key="frame" x="0.0" y="70" width="600" height="486"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eeb-RF-cK4">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="mxX-E9-1P3"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="◁" id="Chd-Pl-L5f"/>
+                                    <barButtonItem title="▷" id="qwc-iZ-r0u"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="CBH-1c-Mkt"/>
+                                    <barButtonItem systemItem="refresh" id="Mn4-X6-hof"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VKM-Ba-z31" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="4mc-rQ-eLB"/>
+                            <constraint firstItem="wcK-uQ-JD5" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="10" id="6eY-SA-NPW"/>
+                            <constraint firstItem="wcK-uQ-JD5" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="10" id="AnN-wz-xLr"/>
+                            <constraint firstAttribute="trailing" secondItem="Eeb-RF-cK4" secondAttribute="trailing" id="CWG-q5-pLb"/>
+                            <constraint firstAttribute="trailing" secondItem="wcK-uQ-JD5" secondAttribute="trailing" constant="10" id="HJh-CK-mOz"/>
+                            <constraint firstAttribute="trailing" secondItem="VKM-Ba-z31" secondAttribute="trailing" id="PnB-vs-ItN"/>
+                            <constraint firstItem="Eeb-RF-cK4" firstAttribute="top" secondItem="VKM-Ba-z31" secondAttribute="bottom" id="fgS-Bf-wAu"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Eeb-RF-cK4" secondAttribute="bottom" id="kHW-kD-Hnb"/>
+                            <constraint firstItem="Eeb-RF-cK4" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="oeT-C0-jQZ"/>
+                            <constraint firstItem="VKM-Ba-z31" firstAttribute="top" secondItem="wcK-uQ-JD5" secondAttribute="bottom" constant="10" id="pPn-Q1-Lqa"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="X9E-lg-sib"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
