@@ -22,6 +22,11 @@ class ViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
         self.webView.delegate = self
         self.textField.delegate = self
         
+        let topBorder = CALayer()
+        topBorder.frame = CGRectMake(0, 0, self.webView.frame.size.width, 1)
+        topBorder.backgroundColor = UIColor.lightGrayColor().CGColor
+        self.webView.layer.addSublayer(topBorder)
+        
         let startUrl = "http://www.yahoo.co.jp/" // Sample url
         
         self.accessUrl(startUrl)
@@ -57,6 +62,7 @@ class ViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         var urlString = self.textField.text
         urlString = urlString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        
         if urlString == "" {
             self.showAlert("Enter URL")
         } else {
