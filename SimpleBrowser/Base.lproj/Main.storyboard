@@ -31,10 +31,22 @@
                                     <constraint firstAttribute="height" constant="44" id="mxX-E9-1P3"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem title="◁" id="Chd-Pl-L5f"/>
-                                    <barButtonItem title="▷" id="qwc-iZ-r0u"/>
+                                    <barButtonItem title="◁" id="Chd-Pl-L5f">
+                                        <connections>
+                                            <action selector="goBack:" destination="vXZ-lx-hvc" id="StU-uq-cOa"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="▷" id="qwc-iZ-r0u">
+                                        <connections>
+                                            <action selector="goForward:" destination="vXZ-lx-hvc" id="TFb-2z-3Bh"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="CBH-1c-Mkt"/>
-                                    <barButtonItem systemItem="refresh" id="Mn4-X6-hof"/>
+                                    <barButtonItem systemItem="refresh" id="Mn4-X6-hof">
+                                        <connections>
+                                            <action selector="reload:" destination="vXZ-lx-hvc" id="i8C-nh-0VK"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -53,6 +65,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="X9E-lg-sib"/>
+                    <connections>
+                        <outlet property="backBtn" destination="Chd-Pl-L5f" id="0qH-MO-8Au"/>
+                        <outlet property="forwardBtn" destination="qwc-iZ-r0u" id="SBq-FV-7Im"/>
+                        <outlet property="textField" destination="wcK-uQ-JD5" id="tQr-ff-tox"/>
+                        <outlet property="webView" destination="VKM-Ba-z31" id="DV0-Zp-oe5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
