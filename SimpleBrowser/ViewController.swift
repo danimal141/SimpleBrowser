@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIWebViewDelegate {
 
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var webView: UIWebView!
@@ -18,13 +18,26 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.webView.delegate = self
+        
         let startUrl = "http://www.yahoo.co.jp/"
         if let url = NSURL(string: startUrl) {
             let urlRequest = NSURLRequest(URL: url)
             self.webView.loadRequest(urlRequest)
         }
+        
+        self.setupBtnsEnabled()
+    }
+    
+    func setupBtnsEnabled() {
+        self.backBtn.enabled = self.webView.canGoBack
+        self.forwardBtn.enabled = self.webView.canGoForward
     }
 
+    func webViewDidFinishLoad(webView: UIWebView) {
+        self.setupBtnsEnabled()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
